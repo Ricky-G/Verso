@@ -177,15 +177,21 @@ public sealed record ThemeColorTokens
     /// <summary>Default page background color exposed to layout extensions as <c>--verso-bg-default</c>.</summary>
     public string BgDefault { get; init; } = "#FFFFFF";
 
-    /// <summary>Elevated surface background (toolbars, cards) exposed as <c>--verso-bg-elevated</c>.</summary>
-    public string BgElevated { get; init; } = "#F3F3F3";
+    /// <summary>
+    /// Elevated surface background (cards, panel sections) exposed as <c>--verso-bg-elevated</c>:
+    /// the step above <see cref="BgDefault"/>. A light theme has no room above white, so the
+    /// default keeps the page's white and lets <see cref="ThemeElevation.Level1"/> carry the
+    /// step with a hairline and a shadow. Dark themes step up in lightness instead.
+    /// </summary>
+    public string BgElevated { get; init; } = "#FFFFFF";
 
     /// <summary>
     /// Recessed surface background exposed as <c>--verso-bg-sunken</c>: the step below
     /// <see cref="BgDefault"/>, used for wells that content sits inside rather than on
-    /// top of (output regions, fenced code, quoted blocks, empty states).
+    /// top of (output regions, fenced code, quoted blocks, empty states). There is room
+    /// below white, so in light this is a real lightness step.
     /// </summary>
-    public string BgSunken { get; init; } = "#F5F5F5";
+    public string BgSunken { get; init; } = "#F1F1F4";
 
     /// <summary>Default foreground color exposed as <c>--verso-fg-default</c>.</summary>
     public string FgDefault { get; init; } = "#1E1E1E";
